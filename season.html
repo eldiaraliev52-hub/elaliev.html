@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Сезон — F1</title>
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <style>
+    /* Небольшые локальные стили для таблицы сезонов */
+    .seasons-card { margin-top:16px; padding:12px; border-radius:12px; background:var(--panel, #091129); color:var(--white,#fff);} 
+    .seasons-table { width:100%; border-collapse:collapse; margin-top:8px; }
+    .seasons-table th, .seasons-table td { padding:8px 10px; text-align:left; border-bottom:1px solid rgba(255,255,255,0.06); }
+    .seasons-table th { font-weight:600; }
+    .season-select { display:flex; gap:8px; align-items:center; margin-top:8px; }
+    .season-btn { background:transparent; border:1px solid rgba(255,255,255,0.06); padding:6px 8px; border-radius:8px; cursor:pointer; }
+    .season-btn.active { box-shadow:0 6px 18px rgba(0,0,0,0.4); }
+    .small { opacity:0.8; font-size:0.95rem }
+  </style>
+</head>
+<body>
+  <div class="container header">
+    <div class="brand">
+      <div class="logo"><img src="./assets/img/logo.svg" alt="logo" style="width:100%;height:100%;border-radius:6px"></div>
+      <h1>F1</h1>
+    </div>
+    <button id="nav-toggle" aria-label="toggle" style="display:none">☰</button>
+    <nav class="nav">
+      <a href="./index.html">Главная</a>
+      <a href="./teams.html">Команды</a>
+      <a href="./season.html">Сезон</a>
+      <a href="./registration.html">Регистрация</a>
+      <a href="./analytics.html">Аналитика</a>
+      <a href="./contact.html">Контакты</a>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="card">
+      <h2>Календарь сезона 2025</h2>
+      <p class="small">Расписание гонок, результаты и статусы.</p>
+      <table class="table" style="margin-top:12px">
+        <thead><tr><th>Гран-при</th><th>Дата</th><th>Статус</th></tr></thead>
+        <tbody>
+          <tr><td>Гран-при Бахрейна</td><td>02.03.2025</td><td>Завершено</td></tr>
+          <tr><td>Гран-при Монако</td><td>25.05.2025</td><td>Завершено</td></tr>
+          <tr><td>Гран-при Италии</td><td>14.09.2025</td><td>Планируется</td></tr>
+        </tbody>
+      </table>
+
+      <!-- Новый блок: таблица сезонов -->
+      <div class="seasons-card" id="seasons-card">
+        <h3>Таблица сезонов</h3>
+        <p class="small">Выберите сезон, чтобы увидеть чемпиона и ключевые данные.</p>
+
+        <div class="season-select" aria-hidden="false">
+          <div class="season-select" aria-hidden="false">
+          <button class="season-btn active" data-season="2025">2025</button>
+          <button class="season-btn" data-season="2024">2024</button>
+          <button class="season-btn" data-season="2023">2023</button>
+          <button class="season-btn" data-season="2022">2022</button>
+          <button class="season-btn" data-season="2021">2021</button>
+          <button class="season-btn" data-season="2020">2020</button>
+          <button class="season-btn" data-season="2019">2019</button>
+          <button class="season-btn" data-season="2018">2018</button>
+          <button class="season-btn" data-season="2017">2017</button>
+          <button class="season-btn" data-season="2016">2016</button>
+          <button class="season-btn" data-season="2015">2015</button>
+          <button class="season-btn" data-season="2014">2014</button>
+          <button class="season-btn" data-season="2013">2013</button>
+          <button class="season-btn" data-season="2012">2012</button>
+          <button class="season-btn" data-season="2011">2011</button>
+          <button class="season-btn" data-season="2010">2010</button>
+          <button class="season-btn" data-season="2009">2009</button>
+          <button class="season-btn" data-season="2008">2008</button>
+          <button class="season-btn" data-season="2007">2007</button>
+          <button class="season-btn" data-season="2006">2006</button>
+          <button class="season-btn" data-season="2005">2005</button>
+          <button class="season-btn" data-season="2004">2004</button>
+          <button class="season-btn" data-season="2003">2003</button>
+          <button class="season-btn" data-season="2002">2002</button>
+          <button class="season-btn" data-season="2001">2001</button>
+          <button class="season-btn" data-season="2000">2000</button>
+        </div>
+
+        <table class="seasons-table" id="seasons-table" aria-live="polite">
+          <thead>
+            <tr>
+              <th>Сезон</th>
+              <th>Чемпион (пилот)</th>
+              <th>Команда пилота</th>
+              <th>Чемпион (конструкторы)</th>
+              <th>Примечания</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- строки заполняются скриптом -->
+          </tbody>
+        </table>
+
+        <p class="small" style="margin-top:8px">Источник данных: официальные отчёты и новости.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>© 2025 F1 Про — демо. Дизайн: тёмно‑синий / белый / красный.</footer>
+
+  <script>
+    // Небольшой скрипт для подстановки данных сезонов
+    const seasonsData = {
+      "2025": { season:'2025', driverChampion:'Lando Norris', driverTeam:'McLaren', constructors:'McLaren', notes:'Предварительные данные.' },
+      "2024": { season:'2024', driverChampion:'Max Verstappen', driverTeam:'Red Bull', constructors:'Red Bull', notes:'Трёхкратный чемпион мира.' },
+      "2023": { season:'2023', driverChampion:'Max Verstappen', driverTeam:'Red Bull', constructors:'Red Bull', notes:'Абсолютное доминирование.' },
+      "2022": { season:'2022', driverChampion:'Max Verstappen', driverTeam:'Red Bull', constructors:'Red Bull', notes:'Новый технический регламент.' },
+      "2021": { season:'2021', driverChampion:'Max Verstappen', driverTeam:'Red Bull', constructors:'Mercedes', notes:'Самый напряжённый финал десятилетия.' },
+      "2020": { season:'2020', driverChampion:'Lewis Hamilton', driverTeam:'Mercedes', constructors:'Mercedes', notes:'Сезон пандемии.' },
+      "2019": { season:'2019', driverChampion:'Lewis Hamilton', driverTeam:'Mercedes', constructors:'Mercedes', notes:'Доминация Mercedes.' },
+      "2018": { season:'2018', driverChampion:'Lewis Hamilton', driverTeam:'Mercedes', constructors:'Mercedes', notes:'Борьба с Ferrari.' },
+      "2017": { season:'2017', driverChampion:'Lewis Hamilton', driverTeam:'Mercedes', constructors:'Mercedes', notes:'Новая эра аэродинамики.' },
+      "2016": { season:'2016', driverChampion:'Nico Rosberg', driverTeam:'Mercedes', constructors:'Mercedes', notes:'Последний сезон Росберга.' },
+      "2015": { season:'2015', driverChampion:'Lewis Hamilton', driverTeam:'Mercedes', constructors:'Mercedes', notes:'Третий титул Хэмилтона.' },
+      "2014": { season:'2014', driverChampion:'Lewis Hamilton', driverTeam:'Mercedes', constructors:'Mercedes', notes:'Начало гибридной эры.' },
+      "2013": { season:'2013', driverChampion:'Sebastian Vettel', driverTeam:'Red Bull', constructors:'Red Bull', notes:'Четвёртый титул подряд.' },
+      "2012": { season:'2012', driverChampion:'Sebastian Vettel', driverTeam:'Red Bull', constructors:'Red Bull', notes:'Исторически плотный сезон.' },
+      "2011": { season:'2011', driverChampion:'Sebastian Vettel', driverTeam:'Red Bull', constructors:'Red Bull', notes:'Доминирование Red Bull.' },
+      "2010": { season:'2010', driverChampion:'Sebastian Vettel', driverTeam:'Red Bull', constructors:'Red Bull', notes:'Самый молодой чемпион.' },
+      "2009": { season:'2009', driverChampion:'Jenson Button', driverTeam:'Brawn GP', constructors:'Brawn GP', notes:'Сенсация Brawn.' },
+      "2008": { season:'2008', driverChampion:'Lewis Hamilton', driverTeam:'McLaren', constructors:'Ferrari', notes:'Драматическая развязка в Бразилии.' },
+      "2007": { season:'2007', driverChampion:'Kimi Räikkönen', driverTeam:'Ferrari', constructors:'Ferrari', notes:'Титул в 1 очко.' },
+      "2006": { season:'2006', driverChampion:'Fernando Alonso', driverTeam:'Renault', constructors:'Renault', notes:'Второй титул Алонсо.' },
+      "2005": { season:'2005', driverChampion:'Fernando Alonso', driverTeam:'Renault', constructors:'Renault', notes:'Конец эпохи Schumacher.' },
+      "2004": { season:'2004', driverChampion:'Michael Schumacher', driverTeam:'Ferrari', constructors:'Ferrari', notes:'Один из самых доминирующих сезонов.' },
+      "2003": { season:'2003', driverChampion:'Michael Schumacher', driverTeam:'Ferrari', constructors:'Ferrari', notes:'Напряжённая борьба.' },
+      "2002": { season:'2002', driverChampion:'Michael Schumacher', driverTeam:'Ferrari', constructors:'Ferrari', notes:'Максимальное доминирование.' },
+      "2001": { season:'2001', driverChampion:'Michael Schumacher', driverTeam:'Ferrari', constructors:'Ferrari', notes:'Третий титул.' },
+      "2000": { season:'2000', driverChampion:'Michael Schumacher', driverTeam:'Ferrari', constructors:'Ferrari', notes:'Возвращение Ferrari на вершину.' }
+    };
+
+    function renderSeason(seasonKey) {
+      const tbody = document.querySelector('#seasons-table tbody');
+      tbody.innerHTML = '';
+      const s = seasonsData[seasonKey];
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${s.season}</td>
+        <td>${s.driverChampion}</td>
+        <td>${s.driverTeam}</td>
+        <td>${s.constructors}</td>
+        <td>${s.notes}</td>
+      `;
+      tbody.appendChild(tr);
+    }
+
+    // Инициализация
+    document.addEventListener('DOMContentLoaded', () => {
+      renderSeason('2025');
+      document.querySelectorAll('.season-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          document.querySelectorAll('.season-btn').forEach(b => b.classList.remove('active'));
+          e.currentTarget.classList.add('active');
+          const s = e.currentTarget.getAttribute('data-season');
+          renderSeason(s);
+        });
+      });
+    });
+  </script>
+
+  <script src="./assets/js/main.js"></script>
+</body>
+</html>
